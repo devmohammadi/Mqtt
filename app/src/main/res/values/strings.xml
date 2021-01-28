@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Mqtt</string>
+    <string name="sub">subscribe</string>
+    <string name="pub">publish</string>
+    <string name="connect">connect</string>
+    <string name="disconnect">disconnect</string>
+    <string name="Unsubscribed">Unsubscribed</string>
+</resources>
