@@ -57,7 +57,8 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "please enter message then publish ", Toast.LENGTH_LONG)
                         .show()
                 } else {
-                    publish(topic.text.trim().toString(), message.text.trim().toString())
+                    val m = "{HANDEL:\"switch\",PMQT:\"12345678\",TYP:\"power\"}"
+                    publish(topic.text.trim().toString(), m)
                 }
             }
         }
@@ -74,7 +75,7 @@ class MainActivity : AppCompatActivity() {
 
     // Connect MQTT broker
     private fun connect(context: Context, serverUrl: String, username: String, password: String) {
-       // val serverUrl = "tcp://broker.emqx.io:1883"
+        // val serverUrl = "tcp://broker.emqx.io:1883"
         mqttClient = MqttAndroidClient(context, serverUrl, "kotlin_client")
         mqttClient.setCallback(object : MqttCallback {
             override fun messageArrived(topic: String?, message: MqttMessage?) {
@@ -165,10 +166,10 @@ class MainActivity : AppCompatActivity() {
             message.payload = msg.toByteArray()
             message.qos = qos
             message.isRetained = retained
-            mqttClient.publish(topic, message, null, object : IMqttActionListener {
+            mqttClient.publish("in00A59232", message, null, object : IMqttActionListener {
                 override fun onSuccess(asyncActionToken: IMqttToken?) {
                     Log.d(TAG, "$msg published to $topic")
-                    tvMesseage.setTextColor(Color.CYAN)
+                    tvMesseage.setTextColor(Color.BLUE)
                     tvMesseage.append("$msg published to $topic\n")
                 }
 
